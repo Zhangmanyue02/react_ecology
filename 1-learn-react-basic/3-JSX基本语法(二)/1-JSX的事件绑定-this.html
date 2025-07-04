@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib//react-dom.js"></script>
+    <script src="../lib//babel.js"></script>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    message: "Hello React",
+                    count: 100
+                }
+            }
+            btn1Click() {
+                this.setState({
+                    count: this.state.count + 1
+                })
+            }
+            btn2Click = () => {
+                this.setState({
+                    count: 2000
+                })
+            }
+            btn3Click() {
+                this.setState({
+                    count: 999
+                })
+            }
+            render() {
+                const { message } = this.state
+                return (
+                    <div>
+                        {/*this绑定方式一：bind绑定(显示绑定)*/}
+                        <button onClick={this.btn1Click.bind(this)}>btn1按钮</button>
+                        <h2>当前计数:{this.state.count}</h2>
+                        <hr />
+                        {/*this绑定方式二：class fields(外层寻找this，最终找到实例this)*/}
+                        <button onClick={this.btn2Click}>btn2按钮二</button>
+                        <hr />
+                        {/*this绑定方式三（最推荐,最重要）：直接传入一个箭头函数(隐式绑定)*/}
+                        <button onClick={() => this.btn3Click()}>btn3按钮</button>
+                    </div>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        root.render(<App></App>)
+    </script>
+</body>
+
+</html>

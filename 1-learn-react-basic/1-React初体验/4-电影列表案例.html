@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="../lib//react.js"></script>
+    <script src="../lib//react-dom.js"></script>
+    <script src="../lib//babel.js"></script>
+
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        class App extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    movies: ["星际穿越", "流浪地球", "阿凡达", "大话西游"]
+                }
+            }
+            render() {
+                // 1.数组高阶函数
+                // const liELs = this.state.movies.map(movie => <li>{movie}</li>)
+                // 2.基本for循环
+                const liELs = []
+                for(let i = 0;i<this.state.movies.length;i++){
+                    const movie = this.state.movies[i]
+                    const liEL = <li>{movie}</li>
+                    liELs.push(liEL)
+                }
+                return (
+                    <div>
+                        <h2>电影列表</h2>
+                        {liELs}
+                    </div>
+                )
+            }
+        }
+        root.render(<App />)
+    </script>
+</body>
+
+</html>
